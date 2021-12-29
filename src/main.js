@@ -1,7 +1,9 @@
+import header from './gui/header';
+
 
 function App() {
   return (
-    <div></div>
+    header()
   );
 }
 
