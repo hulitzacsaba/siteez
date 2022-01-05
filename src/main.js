@@ -1,10 +1,9 @@
 import header from './gui/header';
+import routing from './components/router';
 
 
-function App() {
+export default function App() {
   return (
     header()
   );
 }
-
-export default App;
