@@ -22,7 +22,7 @@ function header() {
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" hidden>
+                <a class="nav-link" href="#" hidden>
                   Dashboard
                 </a>
               </li>
