@@ -22,11 +22,6 @@ function header() {
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="#" hidden>
-                  Dashboard
-                </a>
-              </li>
-              <li class="nav-item">
                 <Link to="/profile" class="nav-link">
                   Profile
                 </Link>

@@ -1,5 +1,5 @@
 export default function main(){
     return(
-        <p>MainPage</p>
+        <h1>Coming soon...</h1>
     );
 }
