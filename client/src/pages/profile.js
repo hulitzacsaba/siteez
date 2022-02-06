@@ -1,6 +1,26 @@
 import { Outlet, Link } from "react-router-dom";
+import { useState } from "react";
+import Axios from "axios";
 
-export default function prof() {
+export default function Prof() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [loginStatus, setLoginStatus] = useState("");
+
+  const login = () => {
+    Axios.post("http://localhost:3001/login", {
+      username: username,
+      password: password,
+    }).then((response) => {
+      if (response.data.message) {
+        setLoginStatus(response.data.message);
+      }else{
+        setLoginStatus(response.data[0].username);
+      }
+    });
+
+  };
+
   return (
     <>
       <div class="container">
@@ -15,6 +35,9 @@ export default function prof() {
                     class="form-control"
                     id="username"
                     placeholder="Username"
+                    onChange={(e) => {
+                      setUsername(e.target.value);
+                    }}
                   />
                 </div>
                 <div class="mb-3">
@@ -23,10 +46,16 @@ export default function prof() {
                     class="form-control"
                     id="password"
                     placeholder="Password"
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                    }}
                   />
                 </div>
                 <div class="text-center">
-                  <button type="submit" class="btn btn-primary px-5 mb-5 w-100">
+                  <button
+                    onClick={login}
+                    class="btn btn-primary px-5 mb-5 w-100"
+                  >
                     Login
                   </button>
                 </div>

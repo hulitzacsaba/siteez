@@ -1,6 +1,28 @@
+import { useState } from "react";
 import { Outlet, Link } from "react-router-dom";
+import Axios from "axios";
 
-export default function register() {
+export default function Register() {
+  const [usernameReg, setUsernameReg] = useState("");
+  const [passwordReg, setPasswordReg] = useState("");
+  const [password2Reg, setPassword2Reg] = useState("");
+  const [emailReg, setEmailReg] = useState("");
+
+  const register = () => {
+    if (passwordReg === password2Reg) {
+      Axios.post("http://localhost:3001/register", {
+        username: usernameReg,
+        password: passwordReg,
+        email: emailReg,
+      }).then((response) => {
+        console.log(response);
+      });
+    } else {
+      alert("passwordDoesntMatch");
+      console.log("passwordDoesntMatch");
+    }
+  };
+
   return (
     <>
       <div class="container">
@@ -15,6 +37,9 @@ export default function register() {
                     class="form-control"
                     id="username"
                     placeholder="Username"
+                    onChange={(e) => {
+                      setUsernameReg(e.target.value);
+                    }}
                   />
                 </div>
                 <div class="mb-3">
@@ -23,6 +48,9 @@ export default function register() {
                     class="form-control"
                     id="email"
                     placeholder="E-mail"
+                    onChange={(e) => {
+                      setEmailReg(e.target.value);
+                    }}
                   />
                 </div>
                 <div class="mb-3">
@@ -31,6 +59,9 @@ export default function register() {
                     class="form-control"
                     id="password"
                     placeholder="Password"
+                    onChange={(e) => {
+                      setPasswordReg(e.target.value);
+                    }}
                   />
                 </div>
                 <div class="mb-3">
@@ -39,10 +70,16 @@ export default function register() {
                     class="form-control"
                     id="passwordAgain"
                     placeholder="Password again"
+                    onChange={(e) => {
+                      setPassword2Reg(e.target.value);
+                    }}
                   />
                 </div>
                 <div class="text-center">
-                  <button type="submit" class="btn btn-primary px-5 mb-5 w-100">
+                  <button
+                    onClick={register}
+                    class="btn btn-primary px-5 mb-5 w-100"
+                  >
                     Register
                   </button>
                 </div>
