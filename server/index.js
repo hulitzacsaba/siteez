@@ -37,7 +37,7 @@ app.post("/login", (req, res) => {
     [username, password],
     (err, result) => {
       if (err) {
-        res.send({err: err});
+        res.send({ err: err });
       }
       if (result.length > 0) {
         res.send(result);

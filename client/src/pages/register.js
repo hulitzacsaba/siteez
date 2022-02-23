@@ -30,7 +30,7 @@ export default function Register() {
           <div class="col-md-6 offset-md-3">
             <h2 class="text-center text-dark mt-5">Register</h2>
             <div class="card my-5">
-              <form class="card-body p-lg-5">
+              <div class="card-body p-lg-5">
                 <div class="mb-3">
                   <input
                     type="text"
@@ -92,7 +92,7 @@ export default function Register() {
                     Login here!
                   </Link>
                 </div>
-              </form>
+              </div>
             </div>
           </div>
         </div>
