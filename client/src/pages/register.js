@@ -25,16 +25,16 @@ export default function Register() {
 
   return (
     <>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 offset-md-3">
-            <h2 class="text-center text-dark mt-5">Register</h2>
-            <div class="card my-5">
-              <div class="card-body p-lg-5">
-                <div class="mb-3">
+      <div className="container">
+        <div className="row">
+          <div className="col-md-6 offset-md-3">
+            <h2 className="text-center text-dark mt-5">Register</h2>
+            <div className="card my-5">
+              <div className="card-body p-lg-5">
+                <div className="mb-3">
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     id="username"
                     placeholder="Username"
                     onChange={(e) => {
@@ -42,10 +42,10 @@ export default function Register() {
                     }}
                   />
                 </div>
-                <div class="mb-3">
+                <div className="mb-3">
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     id="email"
                     placeholder="E-mail"
                     onChange={(e) => {
@@ -53,10 +53,10 @@ export default function Register() {
                     }}
                   />
                 </div>
-                <div class="mb-3">
+                <div className="mb-3">
                   <input
                     type="password"
-                    class="form-control"
+                    className="form-control"
                     id="password"
                     placeholder="Password"
                     onChange={(e) => {
@@ -64,10 +64,10 @@ export default function Register() {
                     }}
                   />
                 </div>
-                <div class="mb-3">
+                <div className="mb-3">
                   <input
                     type="password"
-                    class="form-control"
+                    className="form-control"
                     id="passwordAgain"
                     placeholder="Password again"
                     onChange={(e) => {
@@ -75,20 +75,20 @@ export default function Register() {
                     }}
                   />
                 </div>
-                <div class="text-center">
+                <div className="text-center">
                   <button
                     onClick={register}
-                    class="btn btn-primary px-5 mb-5 w-100"
+                    className="btn btn-primary px-5 mb-5 w-100"
                   >
                     Register
                   </button>
                 </div>
                 <div
                   id="emailHelp"
-                  class="form-text text-center mb-5 text-dark"
+                  className="form-text text-center mb-5 text-dark"
                 >
                   Already have an account?{" "}
-                  <Link to="/profile" class="text-dark fw-bold">
+                  <Link to="/profile" className="text-dark fw-bold">
                     Login here!
                   </Link>
                 </div>

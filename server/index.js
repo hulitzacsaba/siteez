@@ -48,6 +48,15 @@ app.post("/login", (req, res) => {
   );
 });
 
+app.post("/getData", (req, res) =>{
+  const header = req.body.header;
+  const code = req.body.code;
+  const footer = req.body.footer;
+  const all = header+code+footer;
+
+  res.send(all);
+});
+
 app.listen(3001, () => {
   console.log("SERVER RUNNING...");
 });
