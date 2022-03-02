@@ -1,19 +1,26 @@
-function headerConvert(headerData) {
+function headerConverter(headerData) {
+  const headerArray = headerData.split(",");
 
-    const headerArray = headerData.split(',');
+  const lang = headerArray[0];
+  const charset = headerArray[1];
+  const title = headerArray[2];
+  const noScript = headerArray[3];
 
-    const lang = headerArray[0];
-    const charset = headerArray[1];
-    const title = headerArray[2];
-    const noScript = headerArray[3];
+  const langParam = '<html lang="' + lang + '">';
+  const charsetParam = '<meta charset="' + charset + '">';
+  const titleParam = "<title>" + title + "</title>";
+  const noScriptParam = "<noscript>" + noScript + "</noscript>";
 
-    const langParam = '<html lang="'+lang+'">';
-    const charsetParam = '<meta charset="'+charset+'">';
-    const titleParam = '<title>'+title+'</title>';
-    const noScriptParam = '<noscript>'+noScript+'</noscript>';
+  const headerParamArray =
+    langParam + "," + charsetParam + "," + titleParam + "," + noScriptParam;
 
-    const headerParamArray = langParam+","+charsetParam+","+titleParam+","+noScriptParam;
-
-    return headerParamArray;
-
+  return headerParamArray;
 }
+
+function bodyConverter(bodyData) {
+    const bodyArray = bodyData.split(' ');
+    
+}
+
+module.exports.headerConverter = headerConverter;
+module.exports.bodyConverter = bodyConverter;
