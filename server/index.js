@@ -1,6 +1,7 @@
 const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
+const converter = require("./convertData");
 
 const app = express();
 
@@ -52,9 +53,10 @@ app.post("/getData", (req, res) =>{
   const header = req.body.header;
   const code = req.body.code;
   const footer = req.body.footer;
-  const all = header+code+footer;
 
-  res.send(all);
+  const headerArray = converter.headerConvert(header);
+  console.log(headerArray);
+
 });
 
 app.listen(3001, () => {

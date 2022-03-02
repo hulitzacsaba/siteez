@@ -13,8 +13,8 @@ export default function DataHandler() {
   const [msgFooter, setMsgFooter] = React.useState("");
 
   const sendData = () => {
-    setMsgHeader(lang + "," + charset + "," + title + "," + noScript + ",");
-    setMsg(value + ",");
+    setMsgHeader(lang + "," + charset + "," + title + "," + noScript);
+    setMsg(value);
     setMsgFooter("");
 
     function send() {
