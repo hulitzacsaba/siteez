@@ -76,8 +76,8 @@ export default function DataHandler() {
             onChange={(e) => {
               setLang(e.target.value);
             }}
-            defaultValue="Choose a language..."
           >
+            <option selected>Choose a language...</option>
             <option value="en">English</option>
             <option value="hu">Hungarian</option>
             <option value="de">German</option>
@@ -96,8 +96,8 @@ export default function DataHandler() {
             onChange={(e) => {
               setCharset(e.target.value);
             }}
-            defaultValue="Choose a character set..."
           >
+            <option selected>Choose a character set...</option>
             <option value="UTF-8">UTF-8</option>
             <option value="UTF-16">UTF-16</option>
             <option value="Windows-1252">Windows-1252</option>
