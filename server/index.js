@@ -1,7 +1,9 @@
-const express = require("express");
-const mysql = require("mysql");
-const cors = require("cors");
-const converter = require("./convertData.js");
+import express from "express";
+import mysql from "mysql";
+import cors from "cors";
+import { headerConverter, bodyConverter } from "./convertData.js";
+import { writeThisMf } from "./writeHtml.js";
+
 
 const app = express();
 
@@ -49,14 +51,17 @@ app.post("/login", (req, res) => {
   );
 });
 
-app.post("/getData", (req, res) =>{
+app.post("/getData", (req, res) => {
   const header = req.body.header;
   const code = req.body.code;
   const footer = req.body.footer;
 
-  const headerArray = converter.headerConverter(header);
-  console.log(headerArray);
+  const headerA = header.split(",");
+  const title = headerA[2];
+  const headerArray = headerConverter(header);
+  const bodyArray = bodyConverter(code);
 
+  writeThisMf(headerArray, bodyArray, title);
 });
 
 app.listen(3001, () => {

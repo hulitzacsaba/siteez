@@ -1,8 +1,13 @@
+import { micromark } from "micromark";
+import { gfm, gfmHtml } from "micromark-extension-gfm";
+
+let charset = "";
+
 function headerConverter(headerData) {
   const headerArray = headerData.split(",");
 
   const lang = headerArray[0];
-  const charset = headerArray[1];
+  charset = headerArray[1];
   const title = headerArray[2];
   const noScript = headerArray[3];
 
@@ -18,9 +23,13 @@ function headerConverter(headerData) {
 }
 
 function bodyConverter(bodyData) {
-    const bodyArray = bodyData.split(' ');
-    
+  const charsetLow = charset.toLowerCase();
+  const result = micromark(bodyData, charsetLow, {
+    extensions: [gfm()],
+    htmlExtensions: [gfmHtml()],
+  });
+
+  return result;
 }
 
-module.exports.headerConverter = headerConverter;
-module.exports.bodyConverter = bodyConverter;
+export { headerConverter, bodyConverter };
