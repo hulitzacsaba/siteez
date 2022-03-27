@@ -58,10 +58,12 @@ app.post("/getData", (req, res) => {
 
   const headerA = header.split(",");
   const title = headerA[2];
-  const headerArray = headerConverter(header);
+  headerConverter(header);
   const bodyArray = bodyConverter(code);
 
-  writeThisMf(headerArray, bodyArray, title);
+  setTimeout(() => {
+    writeThisMf(bodyArray, title);
+  }, 5000);
 });
 
 app.listen(3001, () => {
