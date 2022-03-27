@@ -10,28 +10,50 @@ export default function DataHandler() {
   const [charset, setCharset] = React.useState("");
   const [msgHeader, setMsgHeader] = React.useState("");
   const [msgBody, setMsg] = React.useState("");
-  const [msgFooter, setMsgFooter] = React.useState("");
 
-  const sendData = () => {
-    setMsgHeader(lang + "," + charset + "," + title + "," + noScript);
-    setMsg(value);
-    setMsgFooter("");
+  const sendData = (e) => {
+    e.preventDefault();
 
     function send() {
       Axios.post("http://localhost:3001/getData", {
         header: msgHeader,
         code: msgBody,
-        footer: msgFooter,
       }).then((response) => {
-        if (response.data === "" || response.data === null) {
+        if (response.data.message === "undefinied") {
           send();
         } else {
-          console.log(response.data);
+          console.log(response.data.message);
         }
       });
     }
 
-    send();
+    if (title === "" || title === "undefinied" || title === null) {
+      alert("Empty field, check fields again.");
+    } else {
+      if (noScript === "" || noScript === "undefinied" || noScript === null) {
+        alert("Empty field, check fields again.");
+      } else {
+        if (lang === "" || lang === "undefinied" || lang === null) {
+          alert("Empty field, check fields again.");
+        } else {
+          if (charset === "" || charset === "undefinied" || charset === null) {
+            alert("Empty field, check fields again.");
+          } else {
+            if (typeof (title || noScript || lang || charset) !== "undefined") {
+              setMsgHeader(lang + "," + charset + "," + title + "," + noScript);
+              setMsg(value);
+              if (msgHeader !== "" && typeof msgHeader !== "undefined" && msgHeader != null) {
+                send();
+              } else {
+                alert("Error in handling data: undefinied error: try again!");
+              }
+            } else {
+              alert("Error in handling data: undefinied error: try again!");
+            }
+          }
+        }
+      }
+    }
   };
 
   return (
@@ -110,8 +132,13 @@ export default function DataHandler() {
       <MDEditor height={400} value={value} onChange={setValue} />
       <br />
       <p>{value}</p>
-      <button className="btn btn-primary" onClick={sendData}>
-        DO SOMETHING
+      <button
+        className="btn btn-primary"
+        onClick={(e) => {
+          sendData(e);
+        }}
+      >
+        Convert and build
       </button>
     </div>
   );
