@@ -1,5 +1,5 @@
 import { Outlet, Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Axios from "axios";
 
 export default function Prof() {
@@ -7,18 +7,28 @@ export default function Prof() {
   const [password, setPassword] = useState("");
   const [loginStatus, setLoginStatus] = useState("");
 
+  Axios.defaults.withCredentials = true;
+
   const login = () => {
     Axios.post("http://localhost:3001/login", {
       username: username,
-      password: password
+      password: password,
     }).then((response) => {
       if (response.data.message) {
         setLoginStatus(response.data.message);
       } else {
-        setLoginStatus(response.data[0].username);
+        setLoginStatus(response.data[0].userName);
       }
     });
   };
+
+  useEffect(() => {
+    Axios.get("http://localhost:3001/login").then((response) => {
+      if (response.data.loggedIn == true) {
+        setLoginStatus(response.data.user[0].userName);
+      }
+    });
+  }, []);
 
   return (
     <>
@@ -62,6 +72,7 @@ export default function Prof() {
                   id="emailHelp"
                   className="form-text text-center mb-5 text-dark"
                 >
+                  <h1>{loginStatus}</h1>
                   Not Registered? Interested in some extra features?{" "}
                   <Link to="/register" className="text-dark fw-bold">
                     Create an account!
