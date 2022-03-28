@@ -24,7 +24,7 @@ export default function Prof() {
 
   useEffect(() => {
     Axios.get("http://localhost:3001/login").then((response) => {
-      if (response.data.loggedIn == true) {
+      if (response.data.loggedIn === true) {
         setLoginStatus(response.data.user[0].userName);
       }
     });
@@ -72,7 +72,6 @@ export default function Prof() {
                   id="emailHelp"
                   className="form-text text-center mb-5 text-dark"
                 >
-                  <h1>{loginStatus}</h1>
                   Not Registered? Interested in some extra features?{" "}
                   <Link to="/register" className="text-dark fw-bold">
                     Create an account!
