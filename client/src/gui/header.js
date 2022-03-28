@@ -26,6 +26,11 @@ function header() {
                   Profile
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link to="/faq" className="nav-link">
+                  FAQ
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
