@@ -10,6 +10,7 @@ export default function DataHandler() {
   const [charset, setCharset] = React.useState("");
   const [msgHeader, setMsgHeader] = React.useState("");
   const [msgBody, setMsg] = React.useState("");
+  const [loginStatus, setLoginStatus] = React.useState("");
 
   const sendData = (e) => {
     e.preventDefault();
@@ -42,7 +43,11 @@ export default function DataHandler() {
             if (typeof (title || noScript || lang || charset) !== "undefined") {
               setMsgHeader(lang + "," + charset + "," + title + "," + noScript);
               setMsg(value);
-              if (msgHeader !== "" && typeof msgHeader !== "undefined" && msgHeader != null) {
+              if (
+                msgHeader !== "" &&
+                typeof msgHeader !== "undefined" &&
+                msgHeader != null
+              ) {
                 send();
               } else {
                 alert("Error in handling data: undefinied error: try again!");
@@ -55,6 +60,14 @@ export default function DataHandler() {
       }
     }
   };
+
+  React.useEffect(() => {
+    Axios.get("http://localhost:3001/login").then((response) => {
+      if (response.data.loggedIn === true) {
+        setLoginStatus(response.data.user[0].userName);
+      }
+    });
+  }, []);
 
   return (
     <div>
@@ -132,6 +145,7 @@ export default function DataHandler() {
       <MDEditor height={400} value={value} onChange={setValue} />
       <br />
       <p>{value}</p>
+      <p>Currently logged in as: {loginStatus}</p>
       <button
         className="btn btn-primary"
         onClick={(e) => {

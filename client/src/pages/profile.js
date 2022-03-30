@@ -76,6 +76,7 @@ export default function Prof() {
                   <Link to="/register" className="text-dark fw-bold">
                     Create an account!
                   </Link>
+                  <h1>Currently logged in: {loginStatus}</h1>
                 </div>
               </div>
             </div>
