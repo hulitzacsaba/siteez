@@ -10,6 +10,7 @@ import session from "express-session";
 
 import { headerConverter, bodyConverter } from "./convertData.js";
 import { writeThisMf } from "./writeHtml.js";
+import { uploadToPB } from "./uploadPB.js";
 
 const saltRound = 10;
 
@@ -57,7 +58,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
   session({
     key: "userId",
-    secret: "$2a$10$wqKSiBgD34df93Wddr3hGeqkhxsMAtB54vnYK2enplgi1MXeCRGFO",
+    secret: "$2a$10$tzx9MhsBfR5F1.jPvdGAhOAq1hnT9kF8gPgBvOaa7jVSjTW9FNtSe",
     resave: false,
     saveUninitialized: false,
     cookie: {
@@ -68,9 +69,9 @@ app.use(
 
 app.get("/login", (req, res) => {
   if (req.session.user) {
-    res.send({loggedIn: true, user: req.session.user})
-  }else{
-    res.send({loggedIn: false})
+    res.send({ loggedIn: true, user: req.session.user });
+  } else {
+    res.send({ loggedIn: false });
   }
 });
 
@@ -100,6 +101,7 @@ app.post("/login", (req, res) => {
 app.post("/getData", (req, res) => {
   const header = req.body.header;
   const code = req.body.code;
+  let pbCode = "";
 
   const headerA = header.split(",");
   const title = headerA[2];
@@ -109,6 +111,14 @@ app.post("/getData", (req, res) => {
   setTimeout(() => {
     writeThisMf(bodyArray, title);
   }, 5000);
+
+  setTimeout(() => {
+    pbCode = uploadToPB(title);
+  }, 5000);
+
+  setTimeout(() => {
+    console.log(pbCode);
+  }, 15000);
 });
 
 app.listen(3001, () => {

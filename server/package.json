@@ -13,7 +13,8 @@
     "express-session": "^1.17.2",
     "micromark": "^3.0.10",
     "micromark-extension-gfm": "^2.0.1",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "pastebin-ts": "^1.2.0"
   },
   "devDependencies": {},
   "scripts": {},
