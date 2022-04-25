@@ -114,11 +114,11 @@ app.post("/getData", (req, res) => {
 
   setTimeout(() => {
     pbCode = uploadToPB(title);
-  }, 5000);
+  }, 10000);
 
   setTimeout(() => {
     console.log(pbCode);
-  }, 15000);
+  }, 30000);
 });
 
 app.listen(3001, () => {

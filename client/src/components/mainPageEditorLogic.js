@@ -144,7 +144,6 @@ export default function DataHandler() {
       <br />
       <MDEditor height={400} value={value} onChange={setValue} />
       <br />
-      <p>{value}</p>
       <p>Currently logged in as: {loginStatus}</p>
       <button
         className="btn btn-primary"

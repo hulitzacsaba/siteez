@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Gép: 127.0.0.1:3307
--- Létrehozás ideje: 2022. Jan 13. 14:43
--- Kiszolgáló verziója: 10.4.6-MariaDB
--- PHP verzió: 7.3.8
+-- Host: 127.0.0.1
+-- Generation Time: Apr 25, 2022 at 03:47 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,14 +17,16 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
+CREATE DATABASE siteezdummy DEFAULT CHARACTER SET utf8 COLLECT utf8_hungarian_ci;
+
 --
--- Adatbázis: `siteezdummy`
+-- Database: `siteezdummy`
 --
-CREATE DATABASE siteezdummy DEFAULT CHARACTER SET utf8 COLLATE utf8_hungarian_ci;
+
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `sitesave`
+-- Table structure for table `sitesave`
 --
 
 CREATE TABLE `sitesave` (
@@ -38,7 +39,7 @@ CREATE TABLE `sitesave` (
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -49,45 +50,46 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
--- Indexek a kiírt táblákhoz
+-- Indexes for dumped tables
 --
 
 --
--- A tábla indexei `sitesave`
+-- Indexes for table `sitesave`
 --
 ALTER TABLE `sitesave`
   ADD PRIMARY KEY (`id`),
   ADD KEY `userId` (`userId`);
 
 --
--- A tábla indexei `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `userName` (`userName`);
+  ADD UNIQUE KEY `userName` (`userName`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
--- A kiírt táblák AUTO_INCREMENT értéke
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT a táblához `sitesave`
+-- AUTO_INCREMENT for table `sitesave`
 --
 ALTER TABLE `sitesave`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT a táblához `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- Megkötések a kiírt táblákhoz
+-- Constraints for dumped tables
 --
 
 --
--- Megkötések a táblához `sitesave`
+-- Constraints for table `sitesave`
 --
 ALTER TABLE `sitesave`
   ADD CONSTRAINT `sitesave_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`id`);
