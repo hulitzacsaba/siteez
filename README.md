@@ -13,3 +13,5 @@ To initalize the project, clone it to a folder. Then run `npm install` in the cl
 To start the client side, navigate to the client folder and run `npm start` in a console. This will start the dev server for the React app. To start the server side, you need to run the node command, `node index.js` in the server folder, this will start the node server.
 ### Access
 To see the app, type and go to `localhost:3000` in a browser's url field. The port can change but that will be displayed in the console on start-up.
+### Temporary files
+The generated .html and .txt files are avaliable in the server folder, and in that folder a temp folder. They can be opened after minimum of 1 minute when generating the site.
